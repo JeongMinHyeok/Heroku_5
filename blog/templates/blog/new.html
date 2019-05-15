@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load staticfiles%}
+
+{% block content %}
+
+    <div class="card">
+        <h5>{{ blog.title }}</h5>
+        <div class="body">
+            <form method = 'POST'>
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>    
+            <input class="btn btn-dark" type="submit" value="제출하기">
+            </form>
+        </div>
+    </div>
+{% endblock %}

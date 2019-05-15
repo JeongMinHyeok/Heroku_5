@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% load staticfiles%}
+
+{% block content %}
+
+  {% for blog in blogs.all %}
+    <div class="card" style="color: black">
+      <h5>제목: {{ blog.title }}</h5>
+      <div class="body">
+        <h5 class="card-title" color="black">내용: {{ blog.body }}</h5>
+        <p class="card-text">{{ blog.pub_date }}</p>
+        <a href="{% url 'edit' pk=blog.pk %}" class="btn btn-primary">수정</a>
+        <a href="{% url 'remove' pk=blog.pk %}" class="btn btn-primary">삭제</a>
+      </div>
+    </div>
+    <br>
+  {% endfor %}
+
+{% endblock %}
