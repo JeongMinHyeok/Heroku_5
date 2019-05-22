@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div>
+        <div>
+            <h1>{{ blog.title }}</h1>
+            <p>{{ blog.body }}</p>
+            <hr>
+            <p>만든 날짜: {{ blog.pub_date }}</p>
+            <a class="btn btn-secondary" href="{% url 'blog:edit' blog.id %}" role="button">수정</a>
+            <a class="btn btn-danger" href="{% url 'blog:delete' blog.id %}" role="button">삭제</a>
+        </div>
+        {% for comment in blog.comments.all %}
+            <div>
+                <div>
+                    <h1>{{ comment.comment_text }}</h1>
+                    <a class="btn btn-secondary" href="{% url 'blog:comment_edit' comment.id %}" role="button">수정</a>
+                    <a class="btn btn-danger" href="{% url 'blog:comment_delete' comment.id %}" role="button">삭제</a>
+                </div>
+            </div>
+        {% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}

@@ -1,19 +1,25 @@
 {% extends 'index.html' %}
-{% load staticfiles%}
 
 {% block content %}
-
-  {% for blog in blogs.all %}
-    <div class="card" style="color: black">
-      <h5>제목: {{ blog.title }}</h5>
-      <div class="body">
-        <h5 class="card-title" color="black">내용: {{ blog.body }}</h5>
-        <p class="card-text">{{ blog.pub_date }}</p>
-        <a href="{% url 'edit' pk=blog.pk %}" class="btn btn-primary">수정</a>
-        <a href="{% url 'remove' pk=blog.pk %}" class="btn btn-primary">삭제</a>
-      </div>
-    </div>
-    <br>
-  {% endfor %}
-
+    {% if blogs %}
+        <table style="text-align: center;">
+            <thead>
+            <tr>
+                <th scope="col" style="width: 10%;">글 번호</th>
+                <th scope="col" style="width: 20%;">날짜</th>
+                <th scope="col" style="width: 20%;">제목</th>
+                <th scope="col" style="width: 50%;">내용</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for blog in blogs %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{% url 'blog:detail' blog.id %}">{{ blog.title | truncatechars:10 }}</a></td>
+                    <td>{{ blog.body | truncatechars:30 }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

@@ -27,7 +27,7 @@ function global:deactivate ([switch]$NonDestructive) {
 
 deactivate -nondestructive
 
-$env:VIRTUAL_ENV="C:\Users\tlsfk\OneDrive\바탕 화면\멋쟁이 사자처럼\과제\MHCRUD(2)\myvenv"
+$env:VIRTUAL_ENV="C:\Users\tlsfk\OneDrive\바탕 화면\Heroku_5\myvenv"
 
 if (! $env:VIRTUAL_ENV_DISABLE_PROMPT) {
     # Set the prompt to include the env name

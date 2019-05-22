@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=C:\Users\tlsfk\OneDrive\바탕 화면\멋쟁이 사자처럼\과제\MHCRUD(2)\myvenv"
+set "VIRTUAL_ENV=C:\Users\tlsfk\OneDrive\바탕 화면\Heroku_5\myvenv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"
