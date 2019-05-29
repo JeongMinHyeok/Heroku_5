@@ -15,6 +15,7 @@
             {% for blog in blogs %}
                 <tr>
                     <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ blog.pub_date }}</td>
                     <td><a href="{% url 'blog:detail' blog.id %}">{{ blog.title | truncatechars:10 }}</a></td>
                     <td>{{ blog.body | truncatechars:30 }}</td>
                 </tr>
@@ -22,4 +23,5 @@
             </tbody>
         </table>
     {% endif %}
+    <a class="btn btn-secondary" href="{% url 'blog:post_new'%}" role="button">게시글 작성</a>
 {% endblock %}

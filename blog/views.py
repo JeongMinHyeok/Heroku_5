@@ -17,7 +17,7 @@ def blogform(request, blog_id=None):
             blog.body = form.cleaned_data["body"]
             blog.pub_date = timezone.now()
             blog.save()
-            return redirect('home', blog.id)
+            return redirect('blog:detail', blog.id)
     else:
         form = BlogForm(instance=blog_id)
         return render(request, 'blog/new.html', {'form':form})
@@ -32,7 +32,7 @@ def edit(request, blog_id):
 def remove(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     blog.delete()
-    return redirect('home')
+    return redirect('blog:home')
 
 def detail(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
