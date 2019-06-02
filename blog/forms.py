@@ -1,5 +1,5 @@
 from django import forms
-from .models import Blog, Comment, Hashtag, Media
+from .models import Blog, Comment, Hashtag
 
 class BlogForm(forms.ModelForm):
     class Meta:

@@ -1,14 +1,13 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from .forms import BlogForm, CommentForm, HashtagForm
-from .models import Blog, Comment, Hashtag, Media
+from .models import Blog, Comment, Hashtag
 # Create your views here.
 
 def home(request):
     blogs = Blog.objects.all()
     hashtags = Hashtag.objects
-    medias = Media.objects
-    return render(request, 'blog/home.html', {'blogs':blogs, 'hashtags':hashtags, 'medias':medias})
+    return render(request, 'blog/home.html', {'blogs':blogs, 'hashtags':hashtags})
 
 def blogform(request, blog_id=None):
     if request.method == 'POST':
