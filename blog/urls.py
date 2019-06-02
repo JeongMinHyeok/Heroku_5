@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib import admin
 from . import views
 
 app_name = "blog"
@@ -10,4 +11,6 @@ urlpatterns = [
     path("delete/<int:blog_id>/", views.remove, name="delete"),
     path("comment_edit/<int:comment_id>/", views.comment_edit, name="comment_edit"),
     path("comment_delete/<int:comment_id>/", views.comment_delete, name="comment_delete"),
+    path("hashtag/", views.hashtagform, name="hashtag"),
+    path("search/<int:hashtag_id>", views.search, name="search"),
 ]

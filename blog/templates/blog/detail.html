@@ -7,6 +7,9 @@
             <p>{{ blog.body }}</p>
             <hr>
             <p>만든 날짜: {{ blog.pub_date }}</p>
+            {% for hashtag in blog.hashtags.all %}
+            <span>{{ hashtag.name }}</span>
+            {% endfor %}
             <a class="btn btn-secondary" href="{% url 'blog:edit' blog.id %}" role="button">수정</a>
             <a class="btn btn-danger" href="{% url 'blog:delete' blog.id %}" role="button">삭제</a>
             <a class="btn btn-danger" href="{% url 'blog:home' %}" role="button">홈으로</a>
