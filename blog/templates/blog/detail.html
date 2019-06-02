@@ -3,11 +3,14 @@
 {% block content %}
     <div>
         <div>
-            {% for blog in blog.all %}
                 {% if blog.image %}
-                    <img src="{{ blog.image.url }}" alt="image cap">
+                    <div class="card" style="width: 18rem;">
+                    <img src="{{ blog.image.url }}" class="card-img-top" alt="image1">
                 {% endif %}
-            {% endfor %}
+                        <div class="card-body">
+                        </div>
+                </div>
+
             <h1>{{ blog.title }}</h1>
             <p>{{ blog.body }}</p>
             <hr>
@@ -15,6 +18,7 @@
             {% for hashtag in blog.hashtags.all %}
             <span>{{ hashtag.name }}</span>
             {% endfor %}
+            <hr>
             <a class="btn btn-secondary" href="{% url 'blog:edit' blog.id %}" role="button">수정</a>
             <a class="btn btn-danger" href="{% url 'blog:delete' blog.id %}" role="button">삭제</a>
             <a class="btn btn-danger" href="{% url 'blog:home' %}" role="button">홈으로</a>
