@@ -1,10 +1,27 @@
 {% extends 'index.html' %}
 
 {% block content %}
+      <!-- Example split danger button -->
+      <div class="btn-group">
+            <button type="button" class="btn btn-warning">해시태그 검색</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              {% for hashtag in hashtags.all %}
+              <a class="dropdown-item" href="{% url 'blog:search' hashtag.id %}">{{ hashtag.name }}</a>
+              {% endfor %}
+            </div>
+          </div>
     {% if blogs %}
         <table style="text-align: center;">
             <thead>
             <tr>
+                {% for media in blog.medias.all %}
+                    {% if medias.image %}
+                        <img src="{{ medias.image.url }}" alt="image cap">
+                    {% endif %}
+                {% endfor %}
                 <th scope="col" style="width: 10%;">글 번호</th>
                 <th scope="col" style="width: 20%;">날짜</th>
                 <th scope="col" style="width: 20%;">제목</th>

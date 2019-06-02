@@ -1,5 +1,7 @@
 from django.urls import path
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 app_name = "blog"
@@ -13,4 +15,4 @@ urlpatterns = [
     path("comment_delete/<int:comment_id>/", views.comment_delete, name="comment_delete"),
     path("hashtag/", views.hashtagform, name="hashtag"),
     path("search/<int:hashtag_id>", views.search, name="search"),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

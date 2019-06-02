@@ -17,7 +17,7 @@
         {% for comment in blog.comments.all %}
             <div>
                 <div>
-                    <h1>{{ comment.comment_text }}</h1>
+                    <h3>{{ comment.comment_text }}</h3>
                     <a class="btn btn-secondary" href="{% url 'blog:comment_edit' comment.id %}" role="button">수정</a>
                     <a class="btn btn-danger" href="{% url 'blog:comment_delete' comment.id %}" role="button">삭제</a>
                 </div>

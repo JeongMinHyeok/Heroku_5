@@ -1,17 +1,18 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from .forms import BlogForm, CommentForm, HashtagForm
-from .models import Blog, Comment, Hashtag
+from .models import Blog, Comment, Hashtag, Media
 # Create your views here.
 
 def home(request):
     blogs = Blog.objects.all()
     hashtags = Hashtag.objects
-    return render(request, 'blog/home.html', {'blogs':blogs, 'hashtags':hashtags})
+    medias = Media.objects
+    return render(request, 'blog/home.html', {'blogs':blogs, 'hashtags':hashtags, 'medias':medias})
 
 def blogform(request, blog_id=None):
     if request.method == 'POST':
-        form = BlogForm(request.POST, instance=blog_id)
+        form = BlogForm(request.POST, request.FILES, instance=blog_id)
         if form.is_valid():
             blog = form.save(commit=False)
             blog.title = form.cleaned_data["title"]
@@ -83,10 +84,10 @@ def hashtagform(request, hashtag=None):
                     hashtag.name = form.cleaned_data['name']
                     hashtag.save()
                     return redirect('blog:home')
-        else:
-            form = HashtagForm(instance=hashtag)
-            return render(request, 'blog/hashtag.html', {'form': form})
+    else:
+        form = HashtagForm(instance=hashtag)
+        return render(request, 'blog/hashtag.html', {'form': form})
 
 def search(request, hashtag_id):
-        hashtag = get_object_or_404(Hashtag, pk=hashtag_id)
+        hashtag = get_object_or_404(Hashtag, id=hashtag_id)
         return render(request, 'blog/search.html', {'hashtag': hashtag})

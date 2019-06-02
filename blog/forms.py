@@ -1,10 +1,10 @@
 from django import forms
-from .models import Blog, Comment, Hashtag
+from .models import Blog, Comment, Hashtag, Media
 
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['title','body', 'hashtags']
+        fields = ['title','body', 'hashtags', 'media']
 
 class CommentForm(forms.ModelForm):
     class Meta:
